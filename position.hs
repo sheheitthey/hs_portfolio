@@ -15,6 +15,10 @@ class Position a where
    cost of 100 shares + 100 shares of the same security is just C, not 2*C.
 -}
 
+positionCashValue :: (Position a) => a -> Float -> Float
+positionCashValue p securityValue = positionValue p securityValue -
+                                    (positionOpenCost p + positionCloseCost p)
+
 data LongPosition = LongPosition Int Float Float deriving (Show)
 
 longPosition_numShares :: LongPosition -> Int
