@@ -10,6 +10,11 @@ class Position a where
     -- positionCloseCost(Position p)
     positionCloseCost :: a -> Float
 
+{- Hmm, it might not make sense to associate open/close costs with individual
+   positions. For example, if commision is a fixed cost C per trade, the close
+   cost of 100 shares + 100 shares of the same security is just C, not 2*C.
+-}
+
 data LongPosition = LongPosition Int Float Float deriving (Show)
 
 longPosition_numShares :: LongPosition -> Int
