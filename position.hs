@@ -19,6 +19,7 @@ positionCashValue :: (Position a) => a -> Float -> Float
 positionCashValue p securityValue = positionValue p securityValue -
                                     (positionOpenCost p + positionCloseCost p)
 
+-- SharePosition numShares openCost closeCost
 data SharePosition = SharePosition Int Float Float deriving (Show)
 
 sharePosition_numShares :: SharePosition -> Int
