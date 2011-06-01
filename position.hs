@@ -19,19 +19,19 @@ positionCashValue :: (Position a) => a -> Float -> Float
 positionCashValue p securityValue = positionValue p securityValue -
                                     (positionOpenCost p + positionCloseCost p)
 
-data LongPosition = LongPosition Int Float Float deriving (Show)
+data SharePosition = SharePosition Int Float Float deriving (Show)
 
-longPosition_numShares :: LongPosition -> Int
-longPosition_numShares (LongPosition numShares _ _) = numShares
+sharePosition_numShares :: SharePosition -> Int
+sharePosition_numShares (SharePosition numShares _ _) = numShares
 
-longPosition_openCost :: LongPosition -> Float
-longPosition_openCost (LongPosition _ openCost _) = openCost
+sharePosition_openCost :: SharePosition -> Float
+sharePosition_openCost (SharePosition _ openCost _) = openCost
 
-longPosition_closeCost :: LongPosition -> Float
-longPosition_closeCost (LongPosition _ _ closeCost) = closeCost
+sharePosition_closeCost :: SharePosition -> Float
+sharePosition_closeCost (SharePosition _ _ closeCost) = closeCost
 
-instance Position LongPosition where
+instance Position SharePosition where
     positionValue p securityValue =
-        (fromIntegral (longPosition_numShares p)) * securityValue
-    positionOpenCost p = longPosition_openCost p
-    positionCloseCost p = longPosition_closeCost p
+        (fromIntegral (sharePosition_numShares p)) * securityValue
+    positionOpenCost p = sharePosition_openCost p
+    positionCloseCost p = sharePosition_closeCost p
