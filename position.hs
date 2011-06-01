@@ -36,3 +36,27 @@ instance Position SharePosition where
         (fromIntegral (sharePosition_numShares p)) * securityValue
     positionOpenCost p = sharePosition_openCost p
     positionCloseCost p = sharePosition_closeCost p
+
+-- OptionPosition numShares strikePrice openCost closeCost
+data OptionPosition = OptionPosition Int Float Float Float deriving (Show)
+
+optionPosition_numShares :: OptionPosition -> Int
+optionPosition_numShares (OptionPosition numShares _ _ _) = numShares
+
+optionPosition_strikePrice :: OptionPosition -> Float
+optionPosition_strikePrice (OptionPosition _ strikePrice _ _) = strikePrice
+
+optionPosition_openCost :: OptionPosition -> Float
+optionPosition_openCost (OptionPosition _ _ openCost _) = openCost
+
+optionPosition_closeCost :: OptionPosition -> Float
+optionPosition_closeCost (OptionPosition _ _ _ closeCost) = closeCost
+
+instance Position OptionPosition where
+    positionValue p securityValue =
+        max ((fromIntegral (optionPosition_numShares p)) *
+             (securityValue - (optionPosition_strikePrice p)))
+            0
+    positionOpenCost p = optionPosition_openCost p
+    positionCloseCost p = optionPosition_closeCost p
+
