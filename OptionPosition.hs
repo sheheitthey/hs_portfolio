@@ -1,5 +1,5 @@
 module OptionPosition (
-    OptionPosition
+    OptionPosition(..)
 ) where
 
 import Position

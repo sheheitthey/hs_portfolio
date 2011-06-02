@@ -1,5 +1,5 @@
 module SharePosition (
-    SharePosition
+    SharePosition(..)
 ) where
 
 import Position
