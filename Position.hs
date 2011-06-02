@@ -1,4 +1,10 @@
-module Position where
+module Position (
+    Position,
+    positionValue,
+    positionOpenCost,
+    positionCloseCost,
+    positionCashValue
+) where
 -- Calculating positions.
 
 class Position a where
