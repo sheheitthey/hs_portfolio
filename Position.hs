@@ -1,7 +1,7 @@
+-- Calculating positions.
 module Position (
     Position
 ) where
--- Calculating positions.
 
 data Position =   SharePosition Int     -- numShares
                                 Float   -- openCost
