@@ -3,7 +3,8 @@ module Position (
     positionValue,
     positionOpenCost,
     positionCloseCost,
-    positionCashValue
+    positionCashValue,
+    comboPositionCashValue
 ) where
 -- Calculating positions.
 
@@ -25,3 +26,12 @@ class Position a where
 positionCashValue :: (Position a) => a -> Float -> Float
 positionCashValue p securityValue = positionValue p securityValue -
                                     (positionOpenCost p + positionCloseCost p)
+
+-- type (Position a) => ComboPosition a = [a]
+
+comboPositionCashValue :: (Position a) => [a] -> Float -> Float
+comboPositionCashValue positions securityValue =
+    foldl (\cashValue position -> cashValue +
+                                  positionCashValue position securityValue)
+          0
+          positions
