@@ -1,6 +1,12 @@
 -- Calculating positions.
 module Position (
-    Position
+    Position(..),
+    positionOpenCost,
+    positionCloseCost,
+    positionValue,
+    positionCashValue,
+    ComboPosition,
+    comboPositionCashValue
 ) where
 
 data Position =   SharePosition Int     -- numShares
