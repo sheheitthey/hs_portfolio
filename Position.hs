@@ -54,3 +54,10 @@ positionCashValue position securityValue =
     let transactionCosts = (positionOpenCost position +
                             positionCloseCost position) in
         positionValue position securityValue - transactionCosts
+
+type ComboPosition = [Position]
+comboPositionCashValue comboPosition securityValue =
+    foldl (\totalCashValue position ->
+               totalCashValue + positionCashValue position securityValue)
+          0
+          comboPosition
