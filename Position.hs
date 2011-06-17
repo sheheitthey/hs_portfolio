@@ -48,3 +48,9 @@ positionValue position securityValue = case position of
                     closeCost) ->
         max ((fromIntegral numShares) * (securityValue - strikePrice))
             0
+
+positionCashValue :: Position -> Float -> Float
+positionCashValue position securityValue =
+    let transactionCosts = (positionOpenCost position +
+                            positionCloseCost position) in
+        positionValue position securityValue - transactionCosts
